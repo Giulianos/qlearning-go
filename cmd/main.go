@@ -9,6 +9,7 @@ func main() {
 	knowledge := qlearning.InitKnowledge()
 
 	knowledge.Learn(
+		// Reward function
 		func(s1, s2 qlearning.AgentState) float64 {
 			if s2.Dist.Norm() < s1.Dist.Norm() {
 				return 1.0
@@ -16,9 +17,13 @@ func main() {
 				return -1.0
 			}
 		},
+		// Max episodes
 		1000,
+		// Alpha function
 		func(episode int) float64 { return 0.6 },
+		// Discount rate
 		1.0,
+		// Epsilon function
 		func(episode int) float64 { return 0.1 },
 	)
 
