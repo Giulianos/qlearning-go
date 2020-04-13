@@ -14,9 +14,16 @@ type QLearning struct {
 	Q map[AgentState]map[Action]float64
 }
 
+func InitKnowledge() QLearning {
+	return QLearning{
+		Q: make(map[AgentState]map[Action]float64, 0),
+	}
+}
+
 func (ql *QLearning) Learn(reward RewardFunc, maxEpisodes int, alpha EpisodicParam, discountRate float64, epsilon EpisodicParam) {
 
 	for episode := 0; episode < maxEpisodes; episode++ {
+		// TODO: this should be randomized on each episode
 		env, agent := GenerateEnvironment(
 			Vec2D{1, 1},   // Agent position
 			Vec2D{0, -1},  // Agent direction (up)

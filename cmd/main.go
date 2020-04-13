@@ -6,9 +6,7 @@ import (
 )
 
 func main() {
-	knowledge := qlearning.QLearning{
-		Q: make(map[qlearning.AgentState]map[qlearning.Action]float64, 0),
-	}
+	knowledge := qlearning.InitKnowledge()
 
 	knowledge.Learn(
 		func(s1, s2 qlearning.AgentState) float64 {
@@ -24,7 +22,7 @@ func main() {
 		func(episode int) float64 { return 0.1 },
 	)
 
-	// Test 1
+	// Example 1
 	env, agent := qlearning.GenerateEnvironment(
 		qlearning.Vec2D{5, 5},   // Agent position
 		qlearning.Vec2D{0, -1},  // Agent direction (up)
